@@ -1,21 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package poker;
 
 /**
  *
  * @author Tim Field <field.tim.k@gmail.com>
  */
-public class Deck 
+public class FrenchDeck 
 {
+   
     final int deckSize = Constant.DECK_SIZE;
+    FrenchCard[] deck;
     
-    Deck()
+    FrenchDeck()
     {
-        Card[] deck = new Card[deckSize];
+        deck = new FrenchCard[deckSize];
         
         //populate the empty deck with faceValue and suit data
         for(int i=0; i<deckSize; i++)
         {
-            deck[i] = new Card();
+            deck[i] = new FrenchCard();
             
             deck[i].setID(i);
             
@@ -32,10 +40,15 @@ public class Deck
                 default: deck[i].setSuit("ERROR"); break;
             }
         }
-        
-        //print cards
+    }
+    
+    //print cards
+    void printDeck()
+    {
         for(int i=0; i<deckSize; i++)
-            deck[i].printCard();
- 
+        {
+            System.out.println("ID:" + deck[i].getID() + " ");
+            deck[i].print();
+        }
     }
 }
