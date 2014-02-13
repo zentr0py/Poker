@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package poker;
 
 /**
@@ -50,7 +44,7 @@ public class FrenchCard extends Card
         {
             case Constant.HEARTS: case Constant.DIAMONDS: tempColor = "Red"; break;
             case Constant.CLUBS: case Constant.SPADES: tempColor = "Black"; break;
-            default: tempColor = "ERROR";
+            default: tempColor = "ERROR IN ASSIGNING SUIT";
         }
         
         setColor(tempColor);
@@ -80,18 +74,18 @@ public class FrenchCard extends Card
             case 11: retFaceString = "Jack";    break;
             case 12: retFaceString = "Queen";   break;
             case 13: retFaceString = "King";    break;
-            default: retFaceString = "ERROR";   break;
+            default: retFaceString = "ERROR IN PARSING FACE VALUE";   break;
         }
         return retFaceString;            
     }
     
         
-    void print()
+    void printCard()
     {
-        System.out.println(getStringFaceValue() + " of " + getSuit());
+        System.out.println("ID:" + getID() + " " + getStringFaceValue() + " of "+ getSuit());
     }
     
-        void setColor(String pColor)
+    void setColor(String pColor)
     {
         color = pColor;
     }
@@ -99,7 +93,5 @@ public class FrenchCard extends Card
     String getColor()
     {
         return color;
-    }
-    
-    
+    }    
 }
