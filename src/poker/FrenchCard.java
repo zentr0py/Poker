@@ -12,7 +12,6 @@ public class FrenchCard extends Card
     
     FrenchCard()
     {
-        setID(-1);
         setFaceValue(-1);
         setSuit("NULL");
     }
@@ -24,7 +23,7 @@ public class FrenchCard extends Card
         setSuit(pSuit);
     }
     
-        void setFaceValue(int pFaceValue)
+    void setFaceValue(int pFaceValue)
     {
         faceValue = pFaceValue;
     }
@@ -38,16 +37,7 @@ public class FrenchCard extends Card
     {
         suit = pSuit;
         
-        String tempColor;
-        
-        switch(suit)
-        {
-            case Constant.HEARTS: case Constant.DIAMONDS: tempColor = "Red"; break;
-            case Constant.CLUBS: case Constant.SPADES: tempColor = "Black"; break;
-            default: tempColor = "ERROR IN ASSIGNING SUIT";
-        }
-        
-        setColor(tempColor);
+        setColor();
     }
     
     String getSuit()
@@ -85,9 +75,14 @@ public class FrenchCard extends Card
         System.out.println("ID:" + getID() + " " + getStringFaceValue() + " of "+ getSuit());
     }
     
-    void setColor(String pColor)
+    void setColor()
     {
-        color = pColor;
+        switch(getSuit())
+        {
+            case Constant.HEARTS: case Constant.DIAMONDS: color = "Red"; break;
+            case Constant.CLUBS: case Constant.SPADES: color = "Black"; break;
+            default: color = "ERROR IN ASSIGNING SUIT";
+        }
     }
     
     String getColor()

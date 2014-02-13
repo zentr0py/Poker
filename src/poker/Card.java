@@ -11,7 +11,7 @@ public class Card
     
     Card()
     {
-        setID(-1);
+        setID(Constant.UNINITIALIZED_ID);
     }
     
     Card(int pID)
