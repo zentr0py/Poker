@@ -12,8 +12,21 @@ public class Poker
     public static void main(String[] args) 
     {
         FrenchDeck deck = new FrenchDeck();
-    
-        deck.printDeck();       
+
+        deck.initialize();
+        
+        System.out.println("Initial Deck:");
+        deck.printDeck(); 
+        
+        deck.shuffle();
+        System.out.println("Shuffled Deck:");
+        deck.printDeck();
+        
+        FrenchCard newcard = deck.dealCard();
+        
+        deck.printDeck();
+        
+        newcard.printCard();
     }
     
 }

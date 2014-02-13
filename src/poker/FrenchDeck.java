@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package poker;
+
+import java.lang.reflect.Array;
+import java.util.Random;
 
 /**
  *
@@ -13,15 +10,21 @@ package poker;
 public class FrenchDeck 
 {
    
-    final int deckSize = Constant.DECK_SIZE;
-    FrenchCard[] deck;
+    private final int fullDeckSize = Constant.FRENCH_DECK_SIZE;
+    private int currentDeckSize;
+    private FrenchCard[] deck;
     
     FrenchDeck()
     {
-        deck = new FrenchCard[deckSize];
-        
+        deck = new FrenchCard[fullDeckSize];
+     
+        setCurrentDeckSize(0);
+    }
+    
+    public void initialize()
+    {
         //populate the empty deck with faceValue and suit data
-        for(int i=0; i<deckSize; i++)
+        for(int i=0; i<fullDeckSize; i++)
         {
             deck[i] = new FrenchCard();
             
@@ -37,18 +40,76 @@ public class FrenchDeck
                 case 1: deck[i].setSuit(Constant.DIAMONDS); break;
                 case 2: deck[i].setSuit(Constant.CLUBS); break;
                 case 3: deck[i].setSuit(Constant.SPADES); break;
-                default: deck[i].setSuit("ERROR"); break;
+                default: deck[i].setSuit("ERROR IN ASSIGNING SUIT"); break;
             }
+            
+            incCurrentDeckSize();
         }
     }
     
+    
     //print cards
-    void printDeck()
+    public void printDeck()
     {
-        for(int i=0; i<deckSize; i++)
+        for(int i=0; i<getCurrentDeckSize(); i++)
         {
-            System.out.println("ID:" + deck[i].getID() + " ");
-            deck[i].print();
+            System.out.print("[" + i + "] ");
+            deck[i].printCard();
         }
+    }
+    
+    private void setCurrentDeckSize(int pSize)
+    {
+        currentDeckSize=pSize;
+    }
+    
+    private int getCurrentDeckSize()
+    {
+        return currentDeckSize;
+    }
+    
+    private void incCurrentDeckSize()
+    {
+        setCurrentDeckSize(getCurrentDeckSize() + 1);
+    }
+    
+    private void decCurrentDeckSize()
+    {
+        setCurrentDeckSize(getCurrentDeckSize() - 1);
+    }
+    
+    private void swapCards(FrenchCard pCard1, FrenchCard pCard2, int pIndex1, int pIndex2)
+    {
+        FrenchCard tempCard = pCard1;
+                
+        Array.set(deck, pIndex1, pCard2);
+        Array.set(deck, pIndex2, tempCard);        
+    }
+    
+    public void shuffle()
+    {
+        Random randgen = new Random(System.currentTimeMillis());
+        
+        int rand;
+        
+        for(int i=0; i<getCurrentDeckSize(); i++)
+        {
+            rand = randgen.nextInt(getCurrentDeckSize());
+            
+            swapCards(deck[i], deck[rand], i, rand);
+        }
+    }
+    
+    //returns card from "top" of deck (highest index)
+    //...then decrements dec size
+    public FrenchCard dealCard()
+    {
+        FrenchCard retCard = deck[getCurrentDeckSize()-1];
+     
+        deck[getCurrentDeckSize()-1] = new FrenchCard();
+        
+        decCurrentDeckSize();
+        
+        return retCard;
     }
 }

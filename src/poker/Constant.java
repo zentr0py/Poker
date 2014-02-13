@@ -6,7 +6,7 @@ package poker;
  */
 public class Constant 
 {
-    public static final int DECK_SIZE = 52;
+    public static final int FRENCH_DECK_SIZE = 52;
     
     public static final String HEARTS = "Hearts";
     public static final String DIAMONDS = "Diamonds";

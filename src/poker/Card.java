@@ -14,7 +14,7 @@ public class Card
         setID(-1);
     }
     
-    Card(int pID, int pFaceValue, String pSuit)
+    Card(int pID)
     {
         setID(pID);
     }
